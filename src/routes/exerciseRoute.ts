@@ -10,7 +10,7 @@ router.get('/exercise/get/:id', exerciseCtrl.get)
 
 router.post('/exercise/add', checkProductData, exerciseCtrl.add)
 
-router.put('/exercise/update/:id', checkProductData, exerciseCtrl.update)
+router.patch('/exercise/update/:id', checkProductData, exerciseCtrl.update)
 
 router.delete('/exercise/delete/:id', exerciseCtrl.delete)
 
