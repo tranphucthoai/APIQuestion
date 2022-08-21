@@ -42,10 +42,10 @@ const exerciseCtrl = {
     },
     add: async (req, res) => {
         try {
-            const { name } = req.body;
+            const { name, description, idUser } = req.body;
 
             const newExercise = new Exercises({
-                name
+                name, description, idUser
             })
             await newExercise.save()
 
