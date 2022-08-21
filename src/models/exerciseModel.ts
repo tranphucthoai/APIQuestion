@@ -11,6 +11,7 @@ const exerciseSchema = new mongoose.Schema({
         ref: 'Users'
     },
 }, {
+    collection: 'Exercise',
     timestamps: true
 })
 

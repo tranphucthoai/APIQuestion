@@ -33,6 +33,7 @@ const userSchema = new mongoose.Schema({
     ref: 'Roles'
   },
 }, {
+  collection: 'User',
   timestamps: true
 })
 

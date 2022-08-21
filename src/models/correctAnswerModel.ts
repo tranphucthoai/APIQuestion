@@ -21,6 +21,7 @@ const correctAnswerSchema = new mongoose.Schema({
         ref: 'Exercises'
     },
 }, {
+    collection: 'CorrectAnswer',
     timestamps: true
 })
 

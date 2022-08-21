@@ -20,6 +20,7 @@ const ignoredQuestionSchema = new mongoose.Schema({
         ref: 'Exercises'
     },
 }, {
+    collection: 'IgnoredQuestion',
     timestamps: true
 })
 

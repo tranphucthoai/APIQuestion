@@ -20,6 +20,7 @@ const attentionQuestionSchema = new mongoose.Schema({
         ref: 'Exercises'
     },
 }, {
+    collection: 'AttentionQuestion',
     timestamps: true
 })
 

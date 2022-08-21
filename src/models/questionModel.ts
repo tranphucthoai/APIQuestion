@@ -16,6 +16,7 @@ const questionSchema = new mongoose.Schema({
         ref: 'Exercises'
     },
 }, {
+    collection: 'Question',
     timestamps: true
 })
 

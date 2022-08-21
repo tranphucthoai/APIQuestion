@@ -27,6 +27,7 @@ const roleSchema = new mongoose.Schema({
         default: false,
     }
 }, {
+    collection: 'Role',
     timestamps: true
 })
 
