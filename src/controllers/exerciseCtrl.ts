@@ -56,10 +56,10 @@ const exerciseCtrl = {
     },
     update: async (req, res) => {
         try {
-            const { name } = req.body;
+            const { name, description, idUser } = req.body;
 
             const exercise = await Exercises.findByIdAndUpdate(req.params.id, {
-                name
+                name, description, idUser
             }, { new: true })
 
             if (!exercise)
