@@ -5,6 +5,9 @@ const questionSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    answers: {
+        type: Array,
+    },
     idUser: {
         type: Schema.Types.ObjectId,
         required: true,
