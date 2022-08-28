@@ -56,10 +56,13 @@ const questionCtrl = {
     },
     update: async (req, res) => {
         try {
-            const { name } = req.body;
+            const { name, answers, idUser , idExercise } = req.body;
 
             const question = await Questions.findByIdAndUpdate(req.params.id, {
-                name
+                name,
+                answers,
+                idUser,
+                idExercise
             }, { new: true })
 
             if (!question)
