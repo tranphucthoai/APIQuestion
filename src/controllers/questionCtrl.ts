@@ -57,6 +57,7 @@ const questionCtrl = {
     update: async (req, res) => {
         try {
             const { name, answers, idUser , idExercise } = req.body;
+            console.log("update: TPT :) req.body", req.body)
 
             const question = await Questions.findByIdAndUpdate(req.params.id, {
                 name,
@@ -64,6 +65,7 @@ const questionCtrl = {
                 idUser,
                 idExercise
             }, { new: true })
+            console.log("update: TPT :) req.params.id", req.params.id)
 
             if (!question)
                 return res.status(404).json({ msg: 'This question does not exist.' })
@@ -75,7 +77,6 @@ const questionCtrl = {
     },
     delete: async (req, res) => {
         try {
-
             const question = await Questions.findByIdAndDelete(req.params.id)
 
             if (!question)

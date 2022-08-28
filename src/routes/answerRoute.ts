@@ -10,7 +10,7 @@ router.get('/answer/get/:id', answerCtrl.get)
 
 router.post('/answer/add', checkProductData, answerCtrl.add)
 
-router.put('/answer/update/:id', checkProductData, answerCtrl.update)
+router.patch('/answer/update/:id', checkProductData, answerCtrl.update)
 
 router.delete('/answer/delete/:id', answerCtrl.delete)
 

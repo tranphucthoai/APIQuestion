@@ -11,7 +11,7 @@ router.get('/question/get/:id', questionCtr.get)
 
 router.post('/question/add', checkProductData, questionCtr.add)
 
-router.put('/question/update/:id', checkProductData, questionCtr.update)
+router.patch('/question/update/:id', checkProductData, questionCtr.update)
 
 router.delete('/question/delete/:id', questionCtr.delete)
 
