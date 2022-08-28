@@ -1,11 +1,13 @@
+import { PAGE_START, PAGINATION } from "../constans";
+
 // Constructors and object instances
 export function APIfeatures(query, queryString){
   this.query = query; // Products.find()
   this.queryString = queryString; // req.query
 
   this.paginating = () => {
-    const page = this.queryString.page * 1 || 1;
-    const limit = this.queryString.limit * 1 || 5;
+    const page = this.queryString.page * 1 || PAGE_START;
+    const limit = this.queryString.limit * 1 || PAGINATION;
     const skip = limit * (page - 1)
     this.query = this.query.limit(limit).skip(skip)
     return this;
