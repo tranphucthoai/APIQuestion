@@ -4,7 +4,7 @@ import IgnoredQuestions from "../models/ignoredQuestionModel"
 import { APIfeatures } from "../lib/features";
 import { PAGE_START, PAGINATION } from "../constans"
 
-const attentionAnswerCtrl = {
+const ignoredQuestionCtrl = {
     getall: async (req, res) => {
         try {
             const features = new APIfeatures(IgnoredQuestions.find(), req.query)
@@ -44,33 +44,63 @@ const attentionAnswerCtrl = {
     },
     add: async (req, res) => {
         try {
-            const { name } = req.body;
+            const { idUser, idExercise, idQuestion } = req.body;
 
-            const newIgnoredQuestion = new IgnoredQuestions({
-                name
-            })
-            await newIgnoredQuestion.save()
+            // const newIgnoredQuestion = new IgnoredQuestions({
+            //     idUser,
+            //     idExercise,
+            //     questionList: []
+            // })
+            // await newIgnoredQuestion.save()
 
-            return res.status(200).json(newIgnoredQuestion)
+            const ignoredQuestionItem = await IgnoredQuestions.findOne(
+                {
+                    idUser,
+                    idExercise
+                })
+
+            if (ignoredQuestionItem) {
+                //has item
+                const updateIgnoredQuestion = IgnoredQuestions.updateOne({
+                    idUser,
+                    idExercise
+                }, {
+                    ...ignoredQuestionItem,
+                    questionList: [...ignoredQuestionItem?.questionList, idQuestion]
+                }, { upsert: true });
+
+                return res.status(200).json(updateIgnoredQuestion)
+
+            } else {
+                const newIgnoredQuestion = new IgnoredQuestions({
+                    idUser, idExercise, questionList: [idQuestion]
+                })
+
+                await newIgnoredQuestion.save()
+
+                return res.status(200).json(newIgnoredQuestion)
+            }
+
+
         } catch (err) {
             return res.status(500).json({ msg: err.message })
         }
     },
     update: async (req, res) => {
-        try {
-            const { name } = req.body;
+        // try {
+        //     const { idQuestion } = req.body;
 
-            const ignoredQuestion = await IgnoredQuestions.findByIdAndUpdate(req.params.id, {
-                name
-            }, { new: true })
+        //     const ignoredQuestion = await IgnoredQuestions.findByIdAndUpdate(req.params.id, {
+        //         questionList: 
+        //     }, { new: true })
 
-            if (!ignoredQuestion)
-                return res.status(404).json({ msg: 'This ignoredQuestion does not exist.' })
+        //     if (!ignoredQuestion)
+        //         return res.status(404).json({ msg: 'This ignoredQuestion does not exist.' })
 
-            return res.status(200).json(ignoredQuestion)
-        } catch (err: any) {
-            return res.status(500).json({ msg: err.message })
-        }
+        //     return res.status(200).json(ignoredQuestion)
+        // } catch (err: any) {
+        //     return res.status(500).json({ msg: err.message })
+        // }
     },
     delete: async (req, res) => {
         try {
@@ -87,4 +117,4 @@ const attentionAnswerCtrl = {
     }
 }
 
-export default attentionAnswerCtrl;
+export default ignoredQuestionCtrl;

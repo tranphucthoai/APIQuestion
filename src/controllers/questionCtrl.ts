@@ -42,10 +42,10 @@ const questionCtrl = {
     },
     add: async (req, res) => {
         try {
-            const { name } = req.body;
+            const { name, answers, idUser, idExercise } = req.body;
 
             const newQuestion = new Questions({
-                name
+                name, answers, idUser, idExercise
             })
             await newQuestion.save()
 
@@ -56,8 +56,7 @@ const questionCtrl = {
     },
     update: async (req, res) => {
         try {
-            const { name, answers, idUser , idExercise } = req.body;
-            console.log("update: TPT :) req.body", req.body)
+            const { name, answers, idUser, idExercise } = req.body;
 
             const question = await Questions.findByIdAndUpdate(req.params.id, {
                 name,

@@ -1,18 +1,17 @@
 import mongoose, { Schema } from 'mongoose'
 
 const ignoredQuestionSchema = new mongoose.Schema({
-    listQuestion: {
-        type: Array,
-    },
+    questionList: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Questions'
+        }
+    ],
+
     idUser: {
         type: Schema.Types.ObjectId,
         required: true,
         ref: 'Users'
-    },
-    idQuestion: {
-        type: Schema.Types.ObjectId,
-        required: true,
-        ref: 'Questions'
     },
     idExercise: {
         type: Schema.Types.ObjectId,

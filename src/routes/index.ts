@@ -3,13 +3,17 @@ import roleRoute from './roleRoute'
 import userRoute from './userRoute'
 import exerciseRoute from './exerciseRoute'
 import questionRoute from './questionRoute'
+import ignoredQuestionRoute from './ignoredQuestionRoute'
+import attentionQuestionRoute from './attentionQuestionRoute'
 
 const routes = [
   productRoute,
   roleRoute,
   userRoute,
   exerciseRoute,
-  questionRoute
+  questionRoute,
+  ignoredQuestionRoute,
+  attentionQuestionRoute,
 ]
 
 export default routes;
